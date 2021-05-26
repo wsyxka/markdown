@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>markdown editor</title>
+</head>
+<style>
+    .notebook,.input,.preview{height: 1000px;}
+    .notebook{
+        border: 10px solid gold;
+        width: 20%;
+        background-color: aqua;
+        display:flex ;
+        justify-content: center;
+    }
+    .input{
+        border:springgreen 10px solid;
+        width: 40%;
+        background-color: blueviolet;
+       
+    }
+    .preview{
+        border: tomato 10px solid;
+        width: 40%;
+       background-color: brown;
+    }
+
+</style>
+<body>
+    <div id="notebook">
+     <div class="notebook">notebook</div>
+     <div class="input">input</div>
+     <div class="preview">preview</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#notebook"
+        })
+    </script>
+</body>
+</html>
