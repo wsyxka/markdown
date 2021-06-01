@@ -40,15 +40,23 @@
     <div id="notebook">
      <div class="notebook">notebook</div>
      <div class="input">
-    <textarea ></textarea>     
+    <textarea v-model="content"></textarea>     
     </div>
-     <div class="preview">preview</div>
+     <div class="preview" v-html="markdownPreview">{markdownPreview}</div>
     </div>
     <script>
-        const html=marked('# hello')
-        console.log(html)
+        // const html=marked('# hello')
+        // console.log(html)
         var vm = new Vue({
-            el:"#notebook"
+            el:"#notebook",
+            data:{
+                content:'test'
+            },
+            computed:{
+                markdownPreview(){
+                    return marked(this.content)
+                }
+            }
         })
     </script>
 </body>
