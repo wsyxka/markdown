@@ -38,11 +38,13 @@
 </style>
 <body>
     <div id="notebook">
-     <div class="notebook">notebook</div>
+     <div class="notebook">
+         <button v-on:click="addNote">add note</button>
+     </div>
      <div class="input">
     <textarea v-model="content"></textarea>     
     </div>
-     <div class="preview" v-html="markdownPreview">{markdownPreview}</div>
+     <div class="preview" v-html="markdownPreview"></div>
     </div>
     <script>
         // const html=marked('# hello')
@@ -50,13 +52,38 @@
         var vm = new Vue({
             el:"#notebook",
             data:{
-                content:'test'
+                content:'',
+                notes:[],
             },
             computed:{
                 markdownPreview(){
                     return marked(this.content)
                 }
-            }
+            },
+          watch:{
+              content(val,oldval){
+                  console.log("new: ",val," old: ",oldval)
+                  localStorage.setItem('content',val)
+              }
+          },
+          created(){
+              this.content = localStorage.getItem('content')
+          },
+          methods:{
+              addNote(){
+                  console.log("add note is called")
+                  const time = Date.now()
+                  console.log(String(time))
+                  const note={
+                      id:String(time),
+                      title:'New note'+(this.notes.length+1),
+                      content:'**HI**',
+                      created:time,
+                      favorite:false,
+                  }
+                  this.notes.push(note)
+              }
+          }
         })
     </script>
 </body>
