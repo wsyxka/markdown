@@ -39,8 +39,9 @@
 <body>
     <div id="notebook">
      <div class="notebook">
-         <button v-on:click="addNote">add note</button>
-     </div>
+         <button v-bind:title="notes.length" v-on:click="addNote">add note</button>
+        <div v-for="note in notes">{{note.title}}</div>
+        </div>
      <div class="input">
     <textarea v-model="content"></textarea>     
     </div>
@@ -73,7 +74,6 @@
               addNote(){
                   console.log("add note is called")
                   const time = Date.now()
-                  console.log(String(time))
                   const note={
                       id:String(time),
                       title:'New note'+(this.notes.length+1),
